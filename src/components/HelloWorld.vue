@@ -9,7 +9,14 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  }, 
+  },
+  provide: {
+    testList: [
+      {title: 'test 1' },
+      {title: 'test 2' },
+      {title: 'test 3' },
+    ]
+  },
   components: {
     Project,
   }
