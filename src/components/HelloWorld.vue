@@ -1,24 +1,39 @@
 <template>
-  <Project name="test project" />
+  <input v-model="newItem" @keyup.enter="addItem" />
+  <ItemList name="test project" />  
 </template>
 
 <script>
-import Project from './Project'
+import ItemList from './ItemList'
 
 export default {
   name: 'HelloWorld',
+  data(){
+    return ({
+      newItem : '',
+      testList: [
+        {title: 'test 1' },
+        {title: 'test 2' },
+        {title: 'test 3' },
+      ]
+    })
+  },
+  methods: {
+    addItem() {
+      this.testList.push({title: this.newItem})
+      console.log(this.testList)
+    }
+  },
   props: {
     msg: String
   },
-  provide: {
-    testList: [
-      {title: 'test 1' },
-      {title: 'test 2' },
-      {title: 'test 3' },
-    ]
+  provide() {
+    return {
+      testList: this.testList,
+    } 
   },
   components: {
-    Project,
+    ItemList,
   }
 }
 </script>
